@@ -20,6 +20,12 @@ namespace Keepr.Repositories
 			return _db.Query<Keep>(sql);
 		}
 
+		internal IEnumerable<Keep> GetUserKeeps(string userId)
+		{
+			string sql = "SELECT * FROM keeps WHERE userId = @userId";
+			return _db.Query<Keep>(sql);
+		}
+
 		internal Keep Get(string id)
 		{
 			string sql = "SELECT * FROM keeps WHERE id = @id";
@@ -35,6 +41,8 @@ namespace Keepr.Repositories
                 (@Id, @Name, @Description, @Img, @IsPrivate, @Views, @Shares, @Keeps, @UserId);";
 			_db.Execute(sql, newKeep);
 		}
+
+
 
 		public void Edit(Keep keep)
 		{

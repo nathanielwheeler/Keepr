@@ -18,13 +18,17 @@ namespace Keepr.Services
 			return _repo.Get();
 		}
 
+		public IEnumerable<Keep> GetUserKeeps(string userId)
+		{
+			IEnumerable<Keep> exists = _repo.GetUserKeeps(userId);
+			if (exists == null) { throw new Exception("Invalid Request"); }
+			return exists;
+		}
+
 		public Keep Get(string id)
 		{
 			Keep exists = _repo.Get(id);
-			if (exists == null)
-			{
-				throw new Exception("Invalid Id");
-			}
+			if (exists == null) { throw new Exception("Invalid Id"); }
 			return exists;
 		}
 
@@ -49,6 +53,8 @@ namespace Keepr.Services
 			_repo.Edit(keep);
 			return keep;
 		}
+
+
 
 		public string Delete(string id)
 		{

@@ -31,6 +31,20 @@ namespace Keepr.Controllers
 
 		}
 
+		[Authorize]
+		[HttpGet("user")]
+		public ActionResult<IEnumerable<Keep>> GetUserKeeps()
+		{
+			try
+			{
+				string reqUserId = HttpContext.User.FindFirstValue("Id");
+				User user = _as.GetUserById(reqUserId);
+				return Ok(user.Id);
+			}
+			catch (Exception e) { return BadRequest(e.Message); }
+
+		}
+
 		[HttpGet("{id}")]
 		public ActionResult<Keep> Get(string id)
 		{
@@ -41,6 +55,8 @@ namespace Keepr.Controllers
 			catch (Exception e) { return BadRequest(e.Message); }
 		}
 
+
+
 		[Authorize]
 		[HttpPost]
 		public ActionResult<Keep> Create([FromBody] Keep newKeep)
@@ -48,6 +64,8 @@ namespace Keepr.Controllers
 
 			try
 			{
+				string reqUserId = HttpContext.User.FindFirstValue("Id");
+				User user = _as.GetUserById(reqUserId);
 				return Ok(_ks.Create(newKeep));
 			}
 			catch (Exception e) { return BadRequest(e.Message); }
@@ -55,15 +73,14 @@ namespace Keepr.Controllers
 		}
 
 		[Authorize]
-		[HttpPut("{id")]
+		[HttpPut("{id}")]
 		public ActionResult<Keep> Edit([FromBody] Keep newKeep, string id)
 		{
 			try
 			{
-				var userIdClaim = HttpContext.User.FindFirstValue("Id");
-				var user = _as.GetUserById(userIdClaim);
 				newKeep.Id = id;
-				newKeep.UserId = user.Id;
+				string reqUserId = HttpContext.User.FindFirstValue("Id");
+				User user = _as.GetUserById(reqUserId);
 				return Ok(_ks.Edit(newKeep));
 			}
 			catch (Exception e) { return BadRequest(e.Message); }
