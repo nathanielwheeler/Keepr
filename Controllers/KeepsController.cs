@@ -39,10 +39,16 @@ namespace Keepr.Controllers
 			{
 				string reqUserId = HttpContext.User.FindFirstValue("Id");
 				User user = _as.GetUserById(reqUserId);
-				return Ok(user.Id);
+				return Ok(_ks.GetUserKeeps(user.Id));
 			}
 			catch (Exception e) { return BadRequest(e.Message); }
 
+		}
+
+		[HttpGet("undefined")]
+		public BadRequestObjectResult GetUndefined()
+		{
+			return BadRequest("Undefined Id");
 		}
 
 		[HttpGet("{id}")]
@@ -66,6 +72,7 @@ namespace Keepr.Controllers
 			{
 				string reqUserId = HttpContext.User.FindFirstValue("Id");
 				User user = _as.GetUserById(reqUserId);
+				newKeep.UserId = user.Id;
 				return Ok(_ks.Create(newKeep));
 			}
 			catch (Exception e) { return BadRequest(e.Message); }
