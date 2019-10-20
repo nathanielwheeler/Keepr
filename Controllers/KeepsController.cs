@@ -39,7 +39,8 @@ namespace Keepr.Controllers
 			{
 				string reqUserId = HttpContext.User.FindFirstValue("Id");
 				User user = _as.GetUserById(reqUserId);
-				return Ok(_ks.GetUserKeeps(user.Id));
+				string userId = user.Id;
+				return Ok(_ks.GetUserKeeps(userId));
 			}
 			catch (Exception e) { return BadRequest(e.Message); }
 
