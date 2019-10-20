@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Keepr.Controllers
 {
+	[ApiController]
 	[Route("/api/[controller]")]
 	public class KeepsController : ControllerBase
 	{
@@ -68,7 +69,6 @@ namespace Keepr.Controllers
 		[HttpPost]
 		public ActionResult<Keep> Create([FromBody] Keep newKeep)
 		{
-
 			try
 			{
 				string reqUserId = HttpContext.User.FindFirstValue("Id");
@@ -76,7 +76,10 @@ namespace Keepr.Controllers
 				newKeep.UserId = user.Id;
 				return Ok(_ks.Create(newKeep));
 			}
-			catch (Exception e) { return BadRequest(e.Message); }
+			catch (Exception e)
+			{
+				return BadRequest(e.Message);
+			}
 
 		}
 
