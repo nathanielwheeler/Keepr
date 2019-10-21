@@ -33,8 +33,8 @@ namespace Keepr.Controllers
 		#region Get Methods
 
 		[Authorize]
-		[HttpGet("user")]
-		public ActionResult<IEnumerable<Vault>> GetUserVaults()
+		[HttpGet]
+		public ActionResult<IEnumerable<Vault>> Get()
 		{
 			try
 			{

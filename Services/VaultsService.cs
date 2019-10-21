@@ -13,6 +13,12 @@ namespace Keepr.Services
 			_repo = repo;
 		}
 
+
+		public IEnumerable<Vault> Get(string userId)
+		{
+			return _repo.Get(userId);
+		}
+
 		public Vault Get(int id, string userId)
 		{
 			Vault vault = _repo.Get(id);
@@ -24,10 +30,7 @@ namespace Keepr.Services
 			return vault;
 		}
 
-		public IEnumerable<Vault> Get(string userId)
-		{
-			return _repo.Get(userId);
-		}
+
 
 		public Vault Create(Vault newVault)
 		{
