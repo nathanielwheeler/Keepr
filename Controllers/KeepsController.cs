@@ -41,20 +41,21 @@ namespace Keepr.Controllers
 				string reqUserId = HttpContext.User.FindFirstValue("Id");
 				User user = _as.GetUserById(reqUserId);
 				string userId = user.Id;
-				return Ok(_ks.GetUserKeeps(userId));
+				return Ok(_ks.Get(userId));
 			}
 			catch (Exception e) { return BadRequest(e.Message); }
 
 		}
 
 		[HttpGet("undefined")]
+		[HttpDelete("undefined")]
 		public BadRequestObjectResult GetUndefined()
 		{
 			return BadRequest("Undefined Id");
 		}
 
 		[HttpGet("{id}")]
-		public ActionResult<Keep> Get(string id)
+		public ActionResult<Keep> Get(int id)
 		{
 			try
 			{
@@ -85,7 +86,7 @@ namespace Keepr.Controllers
 
 		[Authorize]
 		[HttpPut("{id}")]
-		public ActionResult<Keep> Edit([FromBody] Keep newKeep, string id)
+		public ActionResult<Keep> Edit([FromBody] Keep newKeep, int id)
 		{
 			try
 			{
@@ -100,7 +101,7 @@ namespace Keepr.Controllers
 
 		[Authorize]
 		[HttpDelete("{id}")]
-		public ActionResult<string> Delete(string id)
+		public ActionResult<string> Delete(int id)
 		{
 			try
 			{
