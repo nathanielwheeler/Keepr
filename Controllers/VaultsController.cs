@@ -31,12 +31,13 @@ namespace Keepr.Controllers
 
 
 		#region Get Methods
-		[HttpGet]
-		public ActionResult<IEnumerable<Vault>> Get()
-		{
-			try { return Ok(_vs.Get()); }
-			catch (Exception e) { return BadRequest(e.Message); }
-		}
+		// NOTE I don't need/want this method
+		// [HttpGet]
+		// public ActionResult<IEnumerable<Vault>> Get()
+		// {
+		// 	try { return Ok(_vs.Get()); }
+		// 	catch (Exception e) { return BadRequest(e.Message); }
+		// }
 
 		[Authorize]
 		[HttpGet("user")]
@@ -56,7 +57,13 @@ namespace Keepr.Controllers
 		[HttpGet("{id}")]
 		public ActionResult<Vault> Get(int id)
 		{
-			try { return Ok(_vs.Get(id)); }
+			try
+			{
+				string reqUserId = HttpContext.User.FindFirstValue("Id");
+				User user = _as.GetUserById(reqUserId);
+				string userId = user.Id;
+				return Ok(_vs.Get(id, userId));
+			}
 			catch (Exception e) { return BadRequest(e.Message); }
 		}
 		#endregion
