@@ -16,7 +16,7 @@ namespace Keepr.Repositories
 
 		internal IEnumerable<Keep> Get()
 		{
-			string sql = "SELECT * FROM keeps WHERE isPrivate = true";
+			string sql = "SELECT * FROM keeps WHERE isPrivate = 0"; //SQL can't store true/false, so use 1/0 instead.
 			return _db.Query<Keep>(sql);
 		}
 
