@@ -35,7 +35,8 @@ namespace Keepr.Services
 			newKeep.Views = 0;
 			newKeep.Shares = 0;
 			newKeep.Keeps = 0;
-			_repo.Create(newKeep);
+			int id = _repo.Create(newKeep);
+			newKeep.Id = id;
 			return newKeep;
 		}
 

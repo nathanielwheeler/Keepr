@@ -33,14 +33,15 @@ namespace Keepr.Repositories
 			return _db.QueryFirstOrDefault<Keep>(sql, new { id });
 		}
 
-		public void Create(Keep newKeep)
+		public int Create(Keep newKeep)
 		{
 			string sql = @"
                 INSERT INTO keeps
                 (name, description, img, isPrivate, views, shares, keeps, userId)
                 VALUES
-                (@Name, @Description, @Img, @IsPrivate, @Views, @Shares, @Keeps, @UserId);";
-			_db.Execute(sql, newKeep);
+                (@Name, @Description, @Img, @IsPrivate, @Views, @Shares, @Keeps, @UserId);
+				SELECT LAST_INSERT_ID();";
+			return _db.ExecuteScalar<int>(sql, newKeep);
 		}
 
 
