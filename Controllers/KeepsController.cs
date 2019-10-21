@@ -68,6 +68,7 @@ namespace Keepr.Controllers
 		#endregion
 
 
+
 		[Authorize]
 		[HttpPost]
 		public ActionResult<Keep> Create([FromBody] Keep newKeep)
@@ -95,7 +96,7 @@ namespace Keepr.Controllers
 				newKeep.Id = id;
 				string reqUserId = HttpContext.User.FindFirstValue("Id");
 				User user = _as.GetUserById(reqUserId);
-				return Ok(_ks.Edit(newKeep));
+				return Ok(_ks.Edit(newKeep, user.Id));
 			}
 			catch (Exception e) { return BadRequest(e.Message); }
 
@@ -107,7 +108,9 @@ namespace Keepr.Controllers
 		{
 			try
 			{
-				return Ok(_ks.Delete(id));
+				string reqUserId = HttpContext.User.FindFirstValue("Id");
+				User user = _as.GetUserById(reqUserId);
+				return Ok(_ks.Delete(id, user.Id));
 			}
 			catch (Exception e) { return BadRequest(e.Message); }
 		}

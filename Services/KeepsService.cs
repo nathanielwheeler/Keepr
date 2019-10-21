@@ -30,6 +30,17 @@ namespace Keepr.Services
 			return exists;
 		}
 
+		public Keep Get(int id, string userId)
+		{
+			Keep keep = _repo.Get(id);
+			if (keep == null) { throw new Exception("Invalid Id"); }
+			if (keep.UserId != userId)
+			{
+				throw new Exception("That's not your keep!");
+			}
+			return keep;
+		}
+
 		public Keep Create(Keep newKeep)
 		{
 			int id = _repo.Create(newKeep);
@@ -39,7 +50,7 @@ namespace Keepr.Services
 
 		public Keep Edit(Keep newKeep)
 		{
-			Keep keep = _repo.Get(newKeep.Id);
+			Keep keep = Get(newKeep.Id, userId);
 			if (keep == null) { throw new Exception("Invalid Id"); }
 			keep.Name = newKeep.Name;
 			keep.Description = newKeep.Description;
@@ -52,7 +63,7 @@ namespace Keepr.Services
 
 		public string Delete(int id)
 		{
-			Keep keep = _repo.Get(id);
+			Keep keep = Get(id, userId);
 			if (keep == null) { throw new Exception("Invalid Id"); }
 			_repo.Delete(id);
 			return "Successfully delorted";

@@ -14,11 +14,7 @@ namespace Keepr.Repositories
 			_db = db;
 		}
 
-		// internal IEnumerable<Vault> Get()
-		// {
-		// 	string sql = "SELECT * FROM vaults";
-		// 	return _db.Query<Vault>(sql);
-		// }
+
 
 		internal Vault Get(int id)
 		{
@@ -51,13 +47,13 @@ namespace Keepr.Repositories
                 SET
                     name = @Name,
                     description = @Description,
-                WHERE id = @Id";
+                WHERE id = @Id;";
 			_db.Execute(sql, vault);
 		}
 
 		internal void Delete(int id)
 		{
-			string sql = "DELETE FROM vaults WHERE id = @id";
+			string sql = "DELETE FROM vaults WHERE id = @id;";
 			_db.Execute(sql, new { id });
 		}
 	}
