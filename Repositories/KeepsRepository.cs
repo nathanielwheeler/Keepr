@@ -23,7 +23,8 @@ namespace Keepr.Repositories
 		internal IEnumerable<Keep> GetUserKeeps(string userId)
 		{
 			string sql = "SELECT * FROM keeps WHERE userId = @userId";
-			return _db.Query<Keep>(sql);
+			IEnumerable<Keep> response = _db.Query<Keep>(sql, new { userId });
+			return response;
 		}
 
 		internal Keep Get(string id)
