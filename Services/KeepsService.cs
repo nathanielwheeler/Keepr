@@ -48,7 +48,7 @@ namespace Keepr.Services
 			return newKeep;
 		}
 
-		public Keep Edit(Keep newKeep)
+		public Keep Edit(Keep newKeep, string userId)
 		{
 			Keep keep = Get(newKeep.Id, userId);
 			if (keep == null) { throw new Exception("Invalid Id"); }
@@ -61,7 +61,7 @@ namespace Keepr.Services
 
 
 
-		public string Delete(int id)
+		public string Delete(int id, string userId)
 		{
 			Keep keep = Get(id, userId);
 			if (keep == null) { throw new Exception("Invalid Id"); }
