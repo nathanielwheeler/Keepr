@@ -2,14 +2,7 @@
 	<div class="desktop-dash">
 		(desktop-dash)
 		<div class="card-columns">
-			<keep-card />
-			<keep-card />
-			<keep-card />
-			<keep-card />
-			<keep-card />
-			<keep-card />
-			<keep-card />
-			<keep-card />
+			<keep-card url="https://upload.wikimedia.org/wikipedia/en/8/83/Strong_Bad.png">What is love?</keep-card>
 		</div>
 	</div>
 </template>

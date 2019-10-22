@@ -1,7 +1,9 @@
 <template>
 	<div class="keep-card card">
-		<div class="card-header text-left">Title</div>
-		<img src="https://place-hold.it/200x200" class="card-img-top" />
+		<h6 class="card-header text-left">
+			<slot></slot>
+		</h6>
+		<img v-bind:src="url" class="card-img-top" />
 	</div>
 </template>
 

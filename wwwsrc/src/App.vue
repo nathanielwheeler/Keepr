@@ -1,7 +1,9 @@
 <template>
 	<div id="app">
 		<mobile-nav />
-		<router-view />
+		<div class="container">
+			<router-view />
+		</div>
 	</div>
 </template>
 
