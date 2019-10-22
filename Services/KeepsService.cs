@@ -50,8 +50,7 @@ namespace Keepr.Services
 
 		public Keep Edit(Keep newKeep, string userId)
 		{
-			Keep keep = Get(newKeep.Id, userId);
-			if (keep == null) { throw new Exception("Invalid Id"); }
+			Keep keep = Get(newKeep.Id, userId); //Nullchecks
 			keep.Name = newKeep.Name;
 			keep.Description = newKeep.Description;
 			keep.Img = newKeep.Img;
@@ -63,8 +62,7 @@ namespace Keepr.Services
 
 		public string Delete(int id, string userId)
 		{
-			Keep keep = Get(id, userId);
-			if (keep == null) { throw new Exception("Invalid Id"); }
+			Keep keep = Get(id, userId);//Nullchecks
 			_repo.Delete(id);
 			return "Successfully delorted";
 		}

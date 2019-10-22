@@ -33,6 +33,20 @@ namespace Keepr.Repositories
 			return _db.QueryFirstOrDefault<Keep>(sql, new { id });
 		}
 
+		internal IEnumerable<Keep> GetKeepsInVault(IEnumerable<VaultKeep> vKeeps)
+		{
+			string input = "";
+			foreach (VaultKeep vk in vKeeps)
+			{
+				input += vk.KeepId + ",";
+			} // No need to worry about last comma, it goes through SQL fine
+			string sql = @"
+				SELECT * FROM keeps 
+				WHERE id IN (@input);";
+			IEnumerable<Keep> response = _db.Query<Keep>(sql, new { input });
+			return response;
+		}
+
 		public int Create(Keep newKeep)
 		{
 			string sql = @"

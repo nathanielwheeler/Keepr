@@ -22,7 +22,7 @@ namespace Keepr.Services
 		public Vault Get(int id, string userId)
 		{
 			Vault vault = _repo.Get(id);
-			if (vault == null) { throw new Exception("Invalid Id"); }
+			if (vault == null) { throw new Exception("_vs: Invalid Id"); }
 			if (vault.UserId != userId)
 			{
 				throw new Exception("That's not your vault!");
