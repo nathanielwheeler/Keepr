@@ -1,14 +1,14 @@
 <template>
-	<div class="dash-vaults">
+	<div class="dash-vaults container-fluid">
 		<h3>{{user.username}}'s Vaults</h3>
+		<new-vault-button />
 		<div class="grid-container">
 			<vault-card
-				v-for="vault in vaults"
+				v-for="(vault, index) in vaults"
 				:vaultProp="vault"
 				:key="vault.id"
 				v-bind:style="{'grid-column-start': index+1}"
 			/>
-			<new-vault-button />
 		</div>
 	</div>
 </template>
@@ -46,5 +46,7 @@ export default {
 	display: grid;
 	grid-template-columns: 400px;
 	grid-column-gap: 15px;
+	height: 80vh;
+	width: 100%;
 }
 </style>

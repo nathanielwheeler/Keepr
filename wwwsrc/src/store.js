@@ -96,6 +96,13 @@ export default new Vuex.Store({
         commit('setVaults', res.data)
       } catch (error) { console.error(error) }
     },
+    async addVault({ commit, dispatch }, payload) {
+      console.log("Adding vault...")
+      try {
+        await api.post('vaults', payload)
+        dispatch('getVaults')
+      } catch (error) { console.error(error) }
+    },
 
     // #endregion
     // #region VaultKeeps

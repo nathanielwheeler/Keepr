@@ -1,6 +1,6 @@
 <template>
 	<div class="vault-card card">
-		<div class="card-header text-left">{{vaultProp.name}}</div>
+		<h6 class="card-header">{{vaultProp.name}}</h6>
 	</div>
 </template>
 
@@ -20,4 +20,10 @@ export default {
 
 
 <style scoped>
+.vault-card {
+	max-width: 400px;
+	min-width: 400px;
+	margin-right: 7.5px;
+	margin-left: 7.5px;
+}
 </style>

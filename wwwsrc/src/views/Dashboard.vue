@@ -1,5 +1,5 @@
 <template>
-	<div class="dashboard">
+	<div class="dashboard container">
 		<h3>{{user.username}}'s Dashboard</h3>
 		<dash />
 	</div>
