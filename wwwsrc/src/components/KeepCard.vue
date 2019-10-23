@@ -1,7 +1,7 @@
 <template>
 	<div class="keep-card card">
-		<h6 class="card-header text-left">{{name}}</h6>
-		<img v-bind:src="img" class="card-img-top" />
+		<h6 class="card-header text-left">{{keepProp.name}}</h6>
+		<img :src="keepProp.img" class="card-img-top" />
 	</div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
 		};
 	},
 	computed: {},
-	props: [],
+	props: ["keepProp"],
 	methods: {},
 	components: {}
 };

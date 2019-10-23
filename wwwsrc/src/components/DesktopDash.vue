@@ -2,12 +2,7 @@
 	<div class="desktop-dash">
 		(desktop-dash)
 		<div class="card-columns">
-			<keep-card
-				v-for="keep in keeps"
-				v-bind:name="keep.name"
-				v-bind:img="keep.img"
-				v-bind:key="keep.id"
-			>What is love?</keep-card>
+			<keep-card v-for="keep in keeps" :keepProp="keep" :key="keep.id">What is love?</keep-card>
 		</div>
 	</div>
 </template>
