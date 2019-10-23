@@ -1,18 +1,13 @@
 <template>
 	<div class="dashboard">
 		<h1>{{user.username}}'s Dashboard</h1>
-		<div v-if="!isMobile()">
-			<desktop-dash />
-		</div>
-		<div v-else>
-			<mobile-dash />
-		</div>
+
+		<dash />
 	</div>
 </template>
 
 <script>
-import MobileDash from "../components/MobileDash.vue";
-import DesktopDash from "../components/DesktopDash.vue";
+import Dash from "../components/Dash.vue";
 export default {
 	name: "dashboard",
 	computed: {
@@ -41,8 +36,7 @@ export default {
 		}
 	},
 	components: {
-		MobileDash,
-		DesktopDash
+		Dash
 	}
 };
 </script>

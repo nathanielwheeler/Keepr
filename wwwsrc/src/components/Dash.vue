@@ -1,5 +1,5 @@
 <template>
-	<div class="desktop-dash">
+	<div class="dash">
 		(desktop-dash)
 		<div class="card-columns">
 			<keep-card v-for="keep in keeps" :keepProp="keep" :key="keep.id">What is love?</keep-card>
@@ -11,7 +11,7 @@
 <script>
 import KeepCard from "./KeepCard";
 export default {
-	name: "desktop-dash",
+	name: "dash",
 	data() {
 		return {};
 	},
