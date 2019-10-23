@@ -1,9 +1,7 @@
 <template>
 	<div class="keep-card card">
-		<h6 class="card-header text-left">
-			<slot></slot>
-		</h6>
-		<img v-bind:src="url" class="card-img-top" />
+		<h6 class="card-header text-left">{{name}}</h6>
+		<img v-bind:src="img" class="card-img-top" />
 	</div>
 </template>
 
@@ -12,9 +10,13 @@
 export default {
 	name: "keep-card",
 	data() {
-		return {};
+		return {
+			name: "",
+			img: ""
+		};
 	},
 	computed: {},
+	props: [],
 	methods: {},
 	components: {}
 };

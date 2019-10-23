@@ -2,7 +2,12 @@
 	<div class="desktop-dash">
 		(desktop-dash)
 		<div class="card-columns">
-			<keep-card url="https://upload.wikimedia.org/wikipedia/en/8/83/Strong_Bad.png">What is love?</keep-card>
+			<keep-card
+				v-for="keep in keeps"
+				v-bind:name="keep.name"
+				v-bind:img="keep.img"
+				v-bind:key="keep.id"
+			>What is love?</keep-card>
 		</div>
 	</div>
 </template>
@@ -15,7 +20,15 @@ export default {
 	data() {
 		return {};
 	},
-	computed: {},
+	mounted() {
+		this.$store.dispatch("getKeeps");
+	},
+	computed: {
+		keeps() {
+			return this.$store.state.keeps;
+		}
+	},
+	props: [],
 	methods: {},
 	components: {
 		KeepCard
