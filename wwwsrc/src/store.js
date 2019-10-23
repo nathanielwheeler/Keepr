@@ -30,13 +30,16 @@ export default new Vuex.Store({
       //clear the entire state object of user data
       state.user = {}
     },
-
     setKeeps(state, keeps) {
       state.keeps = keeps;
+    },
+    setVaults(state, vaults) {
+      state.vaults = vaults;
     }
   },
   actions: {
     // #region Auth
+
     async register({ commit, dispatch }, creds) {
       try {
         let user = await AuthService.Register(creds)
@@ -65,6 +68,7 @@ export default new Vuex.Store({
         console.warn(e.message)
       }
     },
+
     // #endregion
     // #region Keeps
 
@@ -80,12 +84,24 @@ export default new Vuex.Store({
         let res = await api.get('keeps/user')
         commit('setUserKeeps', res.data)
       } catch (error) { console.error(error) }
-    }
+    },
 
     // #endregion
     // #region Vaults
+
+    async getVaults({ commit, dispatch }) {
+      console.log("Getting vaults...")
+      try {
+        let res = await api.get('vaults')
+        commit('setVaults', res.data)
+      } catch (error) { console.error(error) }
+    },
+
     // #endregion
     // #region VaultKeeps
+
+
+
     // #endregion
   }
 })

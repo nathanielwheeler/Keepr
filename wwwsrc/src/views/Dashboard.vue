@@ -1,7 +1,6 @@
 <template>
 	<div class="dashboard">
-		<h1>{{user.username}}'s Dashboard</h1>
-
+		<h3>{{user.username}}'s Dashboard</h3>
 		<dash />
 	</div>
 </template>
@@ -15,26 +14,7 @@ export default {
 			return this.$store.state.user;
 		}
 	},
-	// created() {
-	// 	document.addEventListener("resize", this.isMobile());
-	// },
-	// destroyed() {
-	// 	document.removeEventListener("resize", this.isMobile());
-	// },
-	methods: {
-		isMobile(e) {
-			if (
-				/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-					navigator.userAgent
-				) // ||
-				// window.innerWidth < 768
-			) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-	},
+	methods: {},
 	components: {
 		Dash
 	}

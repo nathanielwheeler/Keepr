@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<mobile-nav />
+		<navbar />
 		<div class="container">
 			<router-view />
 		</div>
@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import MobileNav from "./components/MobileNav";
+import Navbar from "./components/Navbar";
 export default {
-	components: { MobileNav }
+	components: { Navbar }
 };
 </script>
 
@@ -36,5 +36,13 @@ export default {
 	border-color: #d3a459;
 	background-color: #513d21;
 	text-decoration: underline;
+}
+.card {
+	background-color: #201d19;
+	border-radius: 0;
+	margin: 10px;
+}
+.card-img-top {
+	border-radius: 0;
 }
 </style>

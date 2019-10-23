@@ -10,10 +10,7 @@
 export default {
 	name: "keep-card",
 	data() {
-		return {
-			name: "",
-			img: ""
-		};
+		return {};
 	},
 	computed: {},
 	props: ["keepProp"],
@@ -24,12 +21,4 @@ export default {
 
 
 <style scoped>
-.card {
-	background-color: #201d19;
-	border-radius: 0;
-	margin: 10px;
-}
-.card-img-top {
-	border-radius: 0;
-}
 </style>

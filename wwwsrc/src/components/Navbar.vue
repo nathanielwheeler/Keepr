@@ -1,5 +1,5 @@
 <template>
-	<div class="mobile-nav">
+	<div class="navbar d-flex justify-content-center">
 		<router-link to="/vaults" class="btn btn-outline">Vaults</router-link>
 		<router-link to="/keeps" class="btn btn-outline">Keeps</router-link>
 		<button v-if="user.id" @click="logout" class="btn btn-outline">Logout</button>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-	name: "mobile-nav",
+	name: "navbar",
 	data() {
 		return {};
 	},
@@ -22,6 +22,18 @@ export default {
 	methods: {
 		logout() {
 			this.$store.dispatch("logout");
+		},
+		isMobile() {
+			if (
+				/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+					navigator.userAgent
+				) // ||
+				// window.innerWidth < 768
+			) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	},
 	components: {}
