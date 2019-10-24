@@ -1,5 +1,6 @@
 <template>
 	<div class="navbar d-flex justify-content-center">
+		<router-link to="/" class="btn btn-outline">Dashboard</router-link>
 		<router-link to="/vaults" class="btn btn-outline">Vaults</router-link>
 		<router-link to="/keeps" class="btn btn-outline">Keeps</router-link>
 		<button v-if="user.id" @click="logout" class="btn btn-outline">Logout</button>
