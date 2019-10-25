@@ -48,6 +48,9 @@ export default {
 		},
 		logView() {
 			this.$store.dispatch("logView", this.keepProp.id);
+		},
+		deleteCard(keepId) {
+			this.$store.dispatch("deleteKeep", keepId);
 		}
 	},
 	components: { KeepModal }

@@ -121,6 +121,16 @@ export default new Vuex.Store({
 				dispatch('getUserKeeps')
 			} catch (error) { console.error(error) }
 		},
+		async deleteKeep({ commit, dispatch }, keepId) {
+			try {
+				await api.delete(`keeps/${keepId}`)
+				dispatch('getKeeps')
+				dispatch('getUserKeeps')
+			} catch (error) {
+				console.error(error)
+
+			}
+		},
 
 
 
