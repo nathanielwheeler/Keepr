@@ -35,6 +35,8 @@ namespace Keepr.Services
 		{
 			//NOTE already validated by _vs and _ks
 			int id = _repo.Create(newVKeep);
+			// Update keep Count in target keep
+			_kRepo.KeepIncrease(newVKeep.KeepId);
 			newVKeep.Id = id;
 			return newVKeep;
 		}
@@ -42,6 +44,8 @@ namespace Keepr.Services
 		public string Remove(VaultKeep vKeepToCheck)
 		{
 			VaultKeep vKeep = Check(vKeepToCheck);//nullcheck
+												  // Update keep count in target keep
+			_kRepo.KeepDecrease(vKeep.KeepId);
 			_repo.Remove(vKeep);
 			return "Removed from vault.";
 		}

@@ -58,6 +58,26 @@ namespace Keepr.Repositories
 			return _db.ExecuteScalar<int>(sql, newKeep);
 		}
 
+		public void KeepIncrease(int keepId)
+		{
+			string sql = @"
+				UPDATE keeps
+				SET
+					keeps = keeps + 1
+				WHERE id = @keepID;";
+			_db.Execute(sql, new { keepId });
+		}
+
+		public void KeepDecrease(int keepId)
+		{
+			string sql = @"
+				UPDATE keeps
+				SET
+					keeps = keeps - 1
+				WHERE id = @keepID;";
+			_db.Execute(sql, new { keepId });
+		}
+
 		public void View(int keepId)
 		{
 			string sql = @"

@@ -25,7 +25,15 @@
 					type="button"
 					class="btn btn-outline"
 				>Share to Clipboard!</button>
-				<button @click="logKeep()" type="button" class="btn btn-outline">Keep to Vault!</button>
+				<div class="input-group half-width">
+					<select class="custom-select">
+						<option>(Select Vault)</option>
+						<option v-for="vault in vaults" :key="vault.id">{{vault.name}}</option>
+					</select>
+					<div class="input-group-append">
+						<button class="btn btn-outline no-margin">Add to Vault!</button>
+					</div>
+				</div>
 			</footer>
 		</div>
 	</div>
@@ -40,7 +48,11 @@ export default {
 			shareLink: `https://localhost:8080/#/keeps/${keepProp.id}` //FIXME update once deployed
 		};
 	},
-	computed: {},
+	computed: {
+		vaults() {
+			return this.$store.state.vaults;
+		}
+	},
 	props: ["keepProp"],
 	methods: {
 		close() {
@@ -49,8 +61,11 @@ export default {
 		logShare() {
 			this.$store.dispatch("logShare", this.keepProp.id);
 		},
-		logKeep() {
-			this.$store.dispatch("logKeep", this.keepProp.id);
+		addVaultKeep(vaultId) {
+			let payload = {};
+			payload.vaultId = vaultId;
+			payload.keepId = this.keepProp.id;
+			this.$store.dispatch("addVaultKeep", payload);
 		}
 	},
 	components: {}
@@ -99,5 +114,14 @@ export default {
 .modal-image {
 	max-height: 60vh;
 	width: auto;
+}
+.no-margin {
+	margin: 0;
+}
+.half-width {
+	width: 50%;
+}
+.custom-select {
+	background: #2e2a24;
 }
 </style>

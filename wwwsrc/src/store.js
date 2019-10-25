@@ -35,6 +35,9 @@ export default new Vuex.Store({
 		setKeeps(state, keeps) {
 			state.keeps = keeps;
 		},
+		setUserKeeps(state, userKeeps) {
+			state.userKeeps = userKeeps;
+		},
 		setSelectedKeep(state, keep) {
 			state.selectedKeep = keep
 		},
@@ -111,12 +114,7 @@ export default new Vuex.Store({
 				dispatch('getKeeps')
 			} catch (error) { console.error(error) }
 		},
-		async logKeep({ commit, dispatch }, keepId) {
-			try {
-				await api.put(`keeps/${keepId}/keep`)
-				dispatch('getKeeps')
-			} catch (error) { console.error(error) }
-		},
+
 
 
 		// #endregion
@@ -154,7 +152,20 @@ export default new Vuex.Store({
 				payload.res = await api.get('vaultkeeps/' + vault.id)
 				commit('setVaultKeeps', payload)
 			} catch (error) { console.error(error) }
-		}
+		},
+		async addVaultKeep({ commit, dispatch }, payload) {
+			try {
+				await api.post('vaultkeeps', payload)
+				dispatch('getVaultKeeps')
+			} catch (error) { console.error(error) }
+		},
+		async removeVaultKeep({ commit, dispatch }, payload) {
+			try {
+				await api.put('vaultkeeps', payload)
+				dispatch('getVaultKeeps')
+			} catch (error) { console.error(error) }
+		},
+
 
 		// #endregion
 	}
