@@ -110,6 +110,15 @@ namespace Keepr.Controllers
 			}
 			catch (Exception e) { return BadRequest(e.Message); }
 		}
+		[HttpPut("{id}/share")]
+		public ActionResult<Keep> Share(int id)
+		{
+			try
+			{
+				return Ok(_ks.Share(id));
+			}
+			catch (Exception e) { return BadRequest(e.Message); }
+		}
 
 
 		[Authorize]

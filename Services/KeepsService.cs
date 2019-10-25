@@ -74,5 +74,15 @@ namespace Keepr.Services
 			keep.Views++;
 			return keep;
 		}
+
+		internal object Share(int keepId)
+		{
+			Keep keep = Get(keepId); //Nullcheck
+			_repo.Share(keepId);
+			keep.Views++;
+			return keep;
+		}
+
+
 	}
 }

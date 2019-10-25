@@ -67,6 +67,15 @@ namespace Keepr.Repositories
 				WHERE id = @keepID;";
 			_db.Execute(sql, new { keepId });
 		}
+		public void Share(int keepId)
+		{
+			string sql = @"
+				UPDATE keeps
+				SET
+					shares = shares + 1
+				WHERE id = @keepID;";
+			_db.Execute(sql, new { keepId });
+		}
 
 		public void Edit(Keep keep)
 		{

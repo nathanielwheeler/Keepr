@@ -10,7 +10,8 @@
 		<keep-modal
 			v-show="isModalVisible"
 			@close="closeModal"
-			header="keepProp.name"
+			:keepProp="keepProp"
+			:header="keepProp.name"
 			body
 			footer="keepProp.description"
 		/>
@@ -33,9 +34,13 @@ export default {
 	methods: {
 		showModal() {
 			this.isModalVisible = true;
+			this.logView();
 		},
 		closeModal() {
 			this.isModalVisible = false;
+		},
+		logView() {
+			this.$store.dispatch("logView", this.keepProp.id);
 		}
 	},
 	components: { KeepModal }

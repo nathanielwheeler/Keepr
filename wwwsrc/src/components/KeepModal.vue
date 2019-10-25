@@ -2,19 +2,30 @@
 	<div class="modal-backdrop">
 		<div class="modal" role="dialog">
 			<header class="modal-header">
-				<slot name="header">Header</slot>
+				<h1>{{keepProp.name}}</h1>
 				<button @click="close()" type="button" class="btn btn-outline">X</button>
 			</header>
 			<section class="modal-body">
-				<slot name="body">Body</slot>
+				<img class="container-fluid modal-image" :src="keepProp.img" />
+				<br />
+				<div class="d-flex justify-content-around">
+					<span></span>
+					<span>Views: {{keepProp.views}}</span>
+					<span>Shares: {{keepProp.shares}}</span>
+					<span>Keeps: {{keepProp.keeps}}</span>
+					<span></span>
+				</div>
+				<br />
+				<p class="text-left container">{{keepProp.description}}</p>
 			</section>
 			<footer class="modal-footer">
-				<slot name="footer">
-					Footer
-					<button @click="close()" type="button" class="btn btn-outline"></button>
-					<button @click="close()" type="button" class="btn btn-outline"></button>
-					<button @click="close()" type="button" class="btn btn-outline"></button>
-				</slot>
+				<button
+					@click="logShare()"
+					v-clipboard:copy="shareLink"
+					type="button"
+					class="btn btn-outline"
+				>Share to Clipboard!</button>
+				<button @click="logKeep()" type="button" class="btn btn-outline">Keep to Vault!</button>
 			</footer>
 		</div>
 	</div>
@@ -25,12 +36,21 @@
 export default {
 	name: "modal",
 	data() {
-		return {};
+		return {
+			shareLink: `https://localhost:8080/#/keeps/${keepProp.id}` //FIXME update once deployed
+		};
 	},
 	computed: {},
+	props: ["keepProp"],
 	methods: {
 		close() {
 			this.$emit("close");
+		},
+		logShare() {
+			this.$store.dispatch("logShare", this.keepProp.id);
+		},
+		logKeep() {
+			this.$store.dispatch("logKeep", this.keepProp.id);
 		}
 	},
 	components: {}
@@ -54,6 +74,7 @@ export default {
 	background: #201d19;
 	box-shadow: 2px 2px 20px 1px;
 	overflow-x: auto;
+	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
 }
@@ -74,5 +95,9 @@ export default {
 .modal-body {
 	position: relative;
 	padding: 20px 10px;
+}
+.modal-image {
+	max-height: 60vh;
+	width: auto;
 }
 </style>
