@@ -26,12 +26,12 @@
 					class="btn btn-outline"
 				>Share to Clipboard!</button>
 				<div class="input-group half-width">
-					<select class="custom-select">
+					<select v-model="vaultId" class="custom-select">
 						<option>(Select Vault)</option>
-						<option v-for="vault in vaults" :key="vault.id">{{vault.name}}</option>
+						<option v-for="vault in vaults" :value="vault.id" :key="vault.id">{{vault.name}}</option>
 					</select>
 					<div class="input-group-append">
-						<button class="btn btn-outline no-margin">Add to Vault!</button>
+						<button class="btn btn-outline no-margin" @click="addVaultKeep">Add to Vault!</button>
 					</div>
 				</div>
 			</footer>
@@ -42,10 +42,11 @@
 
 <script>
 export default {
-	name: "modal",
+	name: "keep-modal",
 	data() {
 		return {
-			shareLink: `https://localhost:8080/#/keeps/${keepProp.id}` //FIXME update once deployed
+			vaultId: 0,
+			shareLink: "https://localhost:8080/#/keeps/" + keepProp.id
 		};
 	},
 	computed: {

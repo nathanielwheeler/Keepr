@@ -49,7 +49,7 @@ export default {
 		logView() {
 			this.$store.dispatch("logView", this.keepProp.id);
 		},
-		deleteCard(keepId) {
+		deleteKeep(keepId) {
 			this.$store.dispatch("deleteKeep", keepId);
 		}
 	},
