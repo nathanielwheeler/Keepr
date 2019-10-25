@@ -1,23 +1,22 @@
 <template>
-	<div class="new-vault-button">
-		<h6 v-if="!formVisible" @click="showForm()" class="btn btn-outline">New Vault</h6>
-		<form v-if="formVisible" @submit.prevent="addVault()" class="form-group">
+	<div class="new-keep-button">
+		<h6 v-if="!formVisible" @click="showForm()" class="btn btn-outline">New Keep</h6>
+		<form v-if="formVisible" @submit.prevent="addKeep()" class="form-group">
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<button @click="showForm()" class="btn btn-outline no-margin">X</button>
+					<span class="input-group-text">Private:</span>
+					<div class="input-group-text">
+						<input type="checkbox" name="keep-is-private" v-model="isPrivate" />
+					</div>
 				</div>
-				<input
-					type="text"
-					class="form-control"
-					placeholder="Vault Name"
-					name="vault-name"
-					v-model="name"
-				/>
+				<input type="text" class="form-control" placeholder="Keep Name" name="keep-name" v-model="name" />
+				<input type="text" class="form-control" placeholder="Image URL" name="keep-img" v-model="img" />
 				<input
 					type="text"
 					class="form-control"
 					placeholder="Description"
-					name="vault-description"
+					name="keep-description"
 					v-model="description"
 				/>
 				<div class="input-group-append">
@@ -31,12 +30,14 @@
 
 <script>
 export default {
-	name: "new-vault-button",
+	name: "new-keep-button",
 	data() {
 		return {
 			formVisible: false,
 			name: "",
-			description: ""
+			img: "",
+			description: "",
+			isPrivate: false
 		};
 	},
 	computed: {
@@ -52,13 +53,15 @@ export default {
 				this.formVisible = false;
 			}
 		},
-		addVault() {
-			let vault = {
+		addKeep() {
+			let keep = {
 				name: this.name,
-				description: this.description
+				img: this.img,
+				description: this.description,
+				isPrivate: this.isPrivate
 			};
-			this.$store.dispatch("addVault", vault);
-			this.vault = {};
+			this.$store.dispatch("addKeep", keep);
+			this.keep = {};
 			this.formVisible = false;
 		}
 	},
@@ -70,6 +73,10 @@ export default {
 <style scoped>
 .no-margin {
 	margin: 0px;
+}
+.input-group-text {
+	background: #201d19;
+	border-color: #6b747c;
 }
 input {
 	background: #201d19;

@@ -114,6 +114,13 @@ export default new Vuex.Store({
 				dispatch('getKeeps')
 			} catch (error) { console.error(error) }
 		},
+		async addKeep({ commit, dispatch }, newKeep) {
+			try {
+				await api.post('keeps', newKeep)
+				dispatch('getKeeps')
+				dispatch('getUserKeeps')
+			} catch (error) { console.error(error) }
+		},
 
 
 

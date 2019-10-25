@@ -1,6 +1,13 @@
 <template>
 	<div class="keep-card card">
-		<h6 @click="showModal" class="card-header text-left">{{keepProp.name}}</h6>
+		<div class="card-header d-flex justify-content-between">
+			<h6 @click="showModal" class="text-left">{{keepProp.name}}</h6>
+			<button
+				v-if="keepProp.isPrivate === true"
+				@click="deleteKeep(keepProp.id)"
+				class="btn btn-outline"
+			>X</button>
+		</div>
 		<img @click="showModal" :src="keepProp.img" class="card-img-top" />
 		<p @click="showModal" class="card-footer d-flex justify-content-around">
 			<span>Views: {{keepProp.views}}</span>
