@@ -66,5 +66,13 @@ namespace Keepr.Services
 			_repo.Delete(id);
 			return "Successfully delorted";
 		}
+
+		public Keep View(int keepId)
+		{
+			Keep keep = Get(keepId); //Nullcheck
+			_repo.View(keepId);
+			keep.Views++;
+			return keep;
+		}
 	}
 }

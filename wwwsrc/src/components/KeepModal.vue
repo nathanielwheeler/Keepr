@@ -3,7 +3,7 @@
 		<div class="modal" role="dialog">
 			<header class="modal-header">
 				<slot name="header">Header</slot>
-				<button @click="close()" class="btn btn-outline">X</button>
+				<button @click="close()" type="button" class="btn btn-outline">X</button>
 			</header>
 			<section class="modal-body">
 				<slot name="body">Body</slot>
@@ -11,7 +11,9 @@
 			<footer class="modal-footer">
 				<slot name="footer">
 					Footer
-					<button @click="close()" class="btn btn-outline">Close</button>
+					<button @click="close()" type="button" class="btn btn-outline"></button>
+					<button @click="close()" type="button" class="btn btn-outline"></button>
+					<button @click="close()" type="button" class="btn btn-outline"></button>
 				</slot>
 			</footer>
 		</div>
@@ -28,7 +30,7 @@ export default {
 	computed: {},
 	methods: {
 		close() {
-			this.$emit("close()");
+			this.$emit("close");
 		}
 	},
 	components: {}
@@ -67,7 +69,7 @@ export default {
 }
 .modal-footer {
 	border-top: 1px solid #be862c;
-	justify-content: flex-end;
+	justify-content: space-around;
 }
 .modal-body {
 	position: relative;

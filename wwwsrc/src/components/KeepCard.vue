@@ -1,19 +1,25 @@
 <template>
-	<div @click="showModal()" class="keep-card card">
-		<h6 class="card-header text-left">{{keepProp.name}}</h6>
-		<img :src="keepProp.img" class="card-img-top" />
-		<p class="card-footer d-flex justify-content-around">
+	<div class="keep-card card">
+		<h6 @click="showModal" class="card-header text-left">{{keepProp.name}}</h6>
+		<img @click="showModal" :src="keepProp.img" class="card-img-top" />
+		<p @click="showModal" class="card-footer d-flex justify-content-around">
 			<span>Views: {{keepProp.views}}</span>
 			<span>Shares: {{keepProp.shares}}</span>
 			<span>Keeps: {{keepProp.keeps}}</span>
 		</p>
-		<modal v-show="isModalVisible" @close="closeModal()" />
+		<keep-modal
+			v-show="isModalVisible"
+			@close="closeModal"
+			header="keepProp.name"
+			body
+			footer="keepProp.description"
+		/>
 	</div>
 </template>
 
 
 <script>
-import Modal from "./Modal.vue";
+import KeepModal from "./KeepModal.vue";
 
 export default {
 	name: "keep-card",
@@ -32,7 +38,7 @@ export default {
 			this.isModalVisible = false;
 		}
 	},
-	components: { Modal }
+	components: { KeepModal }
 };
 </script>
 

@@ -29,7 +29,7 @@ namespace Keepr.Controllers
 
 
 
-		#region Get Methods
+
 		[HttpGet]
 		public ActionResult<IEnumerable<Keep>> Get()
 		{
@@ -55,6 +55,7 @@ namespace Keepr.Controllers
 			catch (Exception e) { return BadRequest(e.Message); }
 		}
 
+
 		[HttpGet("{id}")]
 		public ActionResult<Keep> Get(int id)
 		{
@@ -64,8 +65,6 @@ namespace Keepr.Controllers
 			}
 			catch (Exception e) { return BadRequest(e.Message); }
 		}
-
-		#endregion
 
 
 
@@ -99,8 +98,19 @@ namespace Keepr.Controllers
 				return Ok(_ks.Edit(newKeep, user.Id));
 			}
 			catch (Exception e) { return BadRequest(e.Message); }
-
 		}
+
+
+		[HttpPut("{id}/view")]
+		public ActionResult<Keep> View(int id)
+		{
+			try
+			{
+				return Ok(_ks.View(id));
+			}
+			catch (Exception e) { return BadRequest(e.Message); }
+		}
+
 
 		[Authorize]
 		[HttpDelete("{id}")]
@@ -114,5 +124,12 @@ namespace Keepr.Controllers
 			}
 			catch (Exception e) { return BadRequest(e.Message); }
 		}
+
+
+
+
+
+
+
 	}
 }

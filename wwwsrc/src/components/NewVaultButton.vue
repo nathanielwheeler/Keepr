@@ -56,9 +56,9 @@ export default {
 			console.log("Component method");
 			let vault = {
 				name: this.name,
-				description: this.description,
-				userId: this.user.id
+				description: this.description
 			};
+			console.log(vault);
 			this.$store.dispatch("addVault", vault);
 			this.vault = {};
 			this.formVisible = false;

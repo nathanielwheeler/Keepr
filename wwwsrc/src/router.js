@@ -7,6 +7,7 @@ import Login from './views/Login.vue'
 import DashKeeps from './views/DashKeeps.vue'
 import DashVaults from './views/DashVaults.vue'
 
+
 Vue.use(Router)
 
 export default new Router({
@@ -30,6 +31,7 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
-    }
+    },
+
   ]
 })

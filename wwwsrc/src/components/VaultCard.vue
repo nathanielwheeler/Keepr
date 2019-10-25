@@ -1,6 +1,9 @@
 <template>
 	<div class="vault-card card">
-		<h6 class="card-header">{{vaultProp.name}}</h6>
+		<div class="card-header d-flex justify-content-between">
+			<h3 class="align-self-end">{{vaultProp.name}}</h3>
+			<button @click="deleteVault(vaultProp.id)" class="btn btn-outline">X</button>
+		</div>
 		<div class="card-body">
 			<keep-card v-for="keep in vKeeps" :key="keep.id" />
 		</div>
@@ -20,11 +23,16 @@ export default {
 	},
 	computed: {
 		vKeeps() {
-			return this.$store.vaults[this.id].vKeeps;
+			return this.$store.state.vaultKeeps[this.id];
 		}
 	},
 	props: ["vaultProp"],
-	methods: {},
+	methods: {
+		deleteVault(vaultId) {
+			console.log(vaultId);
+			this.$store.dispatch("deleteVault", vaultId);
+		}
+	},
 	components: { KeepCard }
 };
 </script>
